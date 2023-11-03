@@ -1,0 +1,8 @@
+[ha-proxy]
+ha-proxy 
+
+
+[web-servers]
+web-server1
+web-server2 
+web-server3 

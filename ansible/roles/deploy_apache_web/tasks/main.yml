@@ -1,0 +1,37 @@
+---
+# tasks file for deploy_apache_web
+- name: Install Apache
+  yum:
+    name: httpd
+    state: present
+
+- name: Создать директорию /opt/html
+  ansible.builtin.file:
+    path: /opt/html
+    state: directory
+- name: Установить владельца и разрешения для /opt/html
+  ansible.builtin.file:
+    path: /opt/html
+    owner: apache
+    group: apache
+    mode: '0755'
+
+- name: Замена строки /var/www/html на /opt/html в конфигурационных файлах
+  replace:
+    path: /etc/httpd/conf/httpd.conf  # Укажите путь к конфигурационному файлу Apache
+    regexp: '/var/www/html'
+    replace: '/opt/html'
+
+
+- name: Copy Apache index.html file
+  template:
+    src: /home/cloud-user/website/web/index.html
+    dest: /opt/html/index.html
+  notify: Restart Apache
+
+- name: Start Apache and enable it at boot
+  service:
+    name: httpd
+    state: started
+    enabled: yes
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome Page</title>
+</head>
+<body>
+    <h2>WebServer with Hostname: <span id="hostname"></span></h2>
+    <br>Build by Ansible!
+    
+    <script>
+        // JavaScript для вставки имени хоста
+        document.addEventListener("DOMContentLoaded", function () {
+            var hostnameSpan = document.getElementById("hostname");
+            var hostname = "{{ ansible_hostname }}";
+            hostnameSpan.textContent = hostname;
+        });
+    </script>
+</body>
+</html>

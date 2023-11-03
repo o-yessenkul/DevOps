@@ -1,0 +1,19 @@
+---
+# tasks file for deploy_haproxy
+- name: Install HAProxy
+  yum:
+    name: haproxy
+    state: present
+
+- name: Copy HAProxy configuration file
+  template:
+    src: /etc/ansible/roles/deploy_haproxy/templates/haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+  notify: Restart HAProxy
+
+- name: Start HAProxy and enable it at boot
+  service:
+    name: haproxy
+    state: started
+    enabled: yes
+

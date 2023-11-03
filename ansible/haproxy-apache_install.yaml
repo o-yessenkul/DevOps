@@ -1,0 +1,12 @@
+---
+- hosts: ha-proxy
+  become: yes
+  roles:
+    - deploy_haproxy
+
+- hosts: web-servers
+  become: yes
+  roles:
+    - deploy_apache_web
+
+

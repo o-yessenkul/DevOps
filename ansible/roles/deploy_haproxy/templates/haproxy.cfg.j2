@@ -1,0 +1,33 @@
+global
+    log /dev/log local0
+    log /dev/log local1 notice
+    maxconn 2000
+    chroot /var/lib/haproxy
+    user haproxy
+    group haproxy
+    daemon
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    retries 3
+    option redispatch
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+
+frontend http-in
+    bind *:80
+    default_backend web_servers
+
+backend web_servers
+    balance roundrobin
+    option httpchk HEAD / HTTP/1.0
+    {% for server in web_servers %}
+    server {{ server.name }} {{ server.ip }}:{{ server.port }} check
+    {% endfor %}
+    # Добавьте дополнительные серверы по мере необходимости
+
+

@@ -17,9 +17,9 @@ provider "openstack" {
 
 
 resource "openstack_networking_secgroup_v2" "secgroup_1" {
-  name        = "Security Group Web_Servers"
+  name        = "Security Group for Web_Servers"
   description = "My neutron security group for Web Servers"
-  tags = concat(var.common_tags, ["Name= Security Group Web_Servers Build by terraform"])
+  tags = concat(var.common_tags, ["Name= Security Group for Web_Servers Build by terraform"])
 }
 
 resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_1" {
@@ -55,7 +55,7 @@ resource "openstack_networking_secgroup_rule_v2" "secgroup_rule_3" {
 resource "openstack_networking_secgroup_v2" "secgroup_2" {
   name        = "Security Group for HA-Proxy"
   description = "My neutron security group for HA-Proxy"
-  tags = concat(var.common_tags, ["Name= Security Group Ha-Proxy Build by terraform"])
+  tags = concat(var.common_tags, ["Name= Security Group for Ha-Proxy Build by terraform"])
  
 }
 

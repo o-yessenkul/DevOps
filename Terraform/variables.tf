@@ -19,14 +19,14 @@ variable "m1_large" {
     description = "My Openstack m1.large flavor"
 }
 
-variable "network" {
-    description = "My Openstack Network"
+# variable "network" {
+#     description = "My Openstack Network"
   
-}
+# }
 
-variable "subnet" {
-    description = "My Openstack network subnet"
-}
+# variable "subnet" {
+#     description = "My Openstack network subnet"
+# }
 
 variable "all_ip" {
     description = "All IP 0.0.0.0/0"  
@@ -51,4 +51,25 @@ variable "http_port" {
   description = "HTTP port"
   type        = number
   default     = 80
+}
+
+variable "Public_Net_id" {
+    description = "My Openstack Public Network"
+}
+
+variable "int_gateway_ip" {
+    description = "My Openstack Internal Gateway IP"
+}
+
+variable "dns-servers" {
+    description = "My Openstack DNS Servers"
+    type = list(string)
+}
+
+variable "dhcp_start_ip" {
+    description = "My Openstack DHCP Start IP"
+}
+
+variable "dhcp_end_ip" {
+    description = "My Openstack DHCP End IP"
 }
